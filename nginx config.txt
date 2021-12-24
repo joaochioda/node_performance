@@ -1,0 +1,25 @@
+sudo nano /etc/nginx/nginx.conf
+sudo nginx -s reload
+
+sudo systemctl stop/start nginx - stop
+sudo systemctl status nginx - status
+
+http {
+
+        upstream backend {
+
+        server 127.0.0.1:3000;
+        server 127.0.0.1:3001;
+        server 127.0.0.1:3002;
+
+}
+        server {
+        listen 80;
+        root /home/tag/Documents/projetos/node-performance/server2.js;
+        location / {
+                proxy_pass http://backend;
+        }
+}
+}
+
+events {}
